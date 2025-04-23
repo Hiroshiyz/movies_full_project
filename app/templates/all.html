@@ -1,0 +1,23 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container">
+  <h1 class="mb-4 text-center">現正上映電影</h1>
+  <div class="row">
+    {% for movie in movies %}
+    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+      <div class="card">
+        <img
+          src="https://image.tmdb.org/t/p/w500{{ movie['poster_path'] }}"
+          class="card-img-top"
+          alt="{{ movie['title'] }}"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ movie['title'] }}</h5>
+          <p class="card-text">{{ movie['release_date'] }}</p>
+          <a href="#" class="btn btn-primary">訂票</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {%endblock%}
+</div>
