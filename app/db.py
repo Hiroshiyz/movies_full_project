@@ -1,9 +1,8 @@
-from sqlalchemy import create_engine, MetaData
+from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker, declarative_base
 dbPath = "database.db"
 # 創建database
 engine = create_engine("sqlite:/// % s" % dbPath)
-metadata = MetaData()
 # 讓session可以綁定到不同threads
 db_session = scoped_session(sessionmaker(autocommit=False,
                                          autoflush=False,

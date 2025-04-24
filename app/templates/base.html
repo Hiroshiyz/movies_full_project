@@ -14,7 +14,7 @@
   <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Netflix-co</a>
+        <a class="navbar-brand fw-bold" href="#">Netflix-co</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -54,7 +54,7 @@
                 <!-- jinja2的syntax -->
                 <li><a class="dropdown-item" href="/auth/logout">登出</a></li>
                 <li>
-                  <a class="dropdown-item" href="#">歷史訂單</a>
+                  <a class="dropdown-item" href="/booking/history">歷史訂單</a>
                 </li>
                 {%else %}
                 <li><a class="dropdown-item" href="/auth/login">登入</a></li>
@@ -66,6 +66,7 @@
         </div>
       </div>
     </nav>
+    <!-- flash功能 -->
     {%with flashes = get_flashed_messages()%} {% if flashes %}
     <div class="alert alert-info">{{flashes}}</div>
     {%endif%} {%endwith%}

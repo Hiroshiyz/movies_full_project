@@ -13,11 +13,22 @@
         <div class="card-body">
           <h5 class="card-title">{{ movie['title'] }}</h5>
           <p class="card-text">{{ movie['release_date'] }}</p>
-          <a href="#" class="btn btn-primary">訂票</a>
+          {% if current_user.is_authenticated %}
+          <a
+            href="{{url_for('booking.book_ticket',movie_id=movie['id'])}}"
+            class="btn btn-primary"
+            >訂票</a
+          >
+          {%endif%}
+          <a
+            href="{{url_for('movie.movie_detail',movie_id=movie['id'])}}"
+            class="btn btn-primary"
+            >詳細</a
+          >
         </div>
       </div>
     </div>
     {% endfor %}
   </div>
-  {%endblock%}
 </div>
+{%endblock%}

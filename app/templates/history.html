@@ -1,0 +1,22 @@
+{% extends 'base.html' %} {% block content %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">電影</th>
+      <th scope="col">金額</th>
+      <th scope="col">時間</th>
+    </tr>
+  </thead>
+  <tbody>
+    {%for booking in bookings%}
+    <tr>
+      <th scope="row">{{booking.movie[ 'id']}}</th>
+      <td>{{booking.movie['title']}}</td>
+      <td>300$TWD</td>
+      <td>{{booking['booking_time']}}</td>
+    </tr>
+    {%endfor%}
+  </tbody>
+</table>
+{%endblock%}

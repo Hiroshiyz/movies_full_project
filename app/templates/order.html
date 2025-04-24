@@ -1,1 +1,26 @@
-{% extends 'base.html' %} {% block content %} {%endblock%}
+{% extends 'base.html' %} {% block content %}
+
+<form action="/booking/{{movie_id}}" method="post">
+  <h1 class="text-center fw-bold">電影: {{movie['title']}}</h1>
+  <img
+    class="rounded mx-auto d-block img-fluid"
+    src="https://image.tmdb.org/t/p/w500{{ movie['poster_path'] }}"
+    alt="{{movie_title}}"
+  />
+  <p class="display-6 fw-bold">票價: 300元</p>
+  <div class="mb-3">
+    <label for="date" class="form-label">選擇日期</label>
+    <input
+      type="date"
+      class="form-control"
+      id="date"
+      name="booking_time"
+      min="{{today}}"
+      max="{{last_day}}"
+    />
+    <!--  name 傳給後端用 -->
+  </div>
+  <div>畫位(尚未畫位)之後再做</div>
+  <button type="submit" class="btn btn-primary">送出</button>
+</form>
+{%endblock%}

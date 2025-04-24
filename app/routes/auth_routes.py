@@ -22,7 +22,11 @@ def register():
 
         db_session.add(new_user)
         db_session.commit()
-
+        # debug用
+        # for row in db_session.query(User).all():
+        #     print(row.id, row.username, row.created_at,
+        #           row.password_hash, row.email)
+        print("註冊成功")
         flash("註冊成功請登入")
         return redirect(url_for('auth.login'))
 
@@ -35,7 +39,7 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-
+        # Base.query繼承可直接User.query.filter_by...
         user = User.query.filter_by(username=username).first()
         if user and user.check_password(password):
             login_user(user)

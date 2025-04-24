@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, request, current_app
+from flask import Blueprint, render_template, current_app
 
 import requests
 movie_bp = Blueprint('movie', __name__, url_prefix='/movies')
@@ -33,14 +33,21 @@ def all_movies():
 # search
 
 
-@movie_bp.route('/search')
-def search_movies():
-    keyword = request.value('')
-    return render_template('search_results.html', keyword=keyword)
+# @movie_bp.route('/search')
+# def search_movies():
+#     keyword = request.value('')
+#     return render_template('search_results.html', keyword=keyword)
 
 
 # single movie
 
 @movie_bp.route('/<int:movie_id>')
 def movie_detail(movie_id):
-    return render_template('detail.html', movie_id=movie_id)
+    API_KEY = current_app.config['TMDB_API_KEY']
+    url = f"https://api.themoviedb.org/3/movie/{movie_id}?api_key={API_KEY}&language=zh-TW&page=1"
+    response = requests.get(url)
+    if response.status_code != 200:
+        return "Movie not found", 404
+    movie = response.json()
+    # print(movie)
+    return render_template('detail.html', movie_id=movie_id, movie=movie)
