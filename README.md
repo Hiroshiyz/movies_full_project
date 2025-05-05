@@ -43,10 +43,9 @@ A simple web application for browsing movies and booking movie tickets, built wi
 
 ## To-Do List
 
-1. 使用者相關問題 目前還沒建立使用者和訂單紀錄綁定
 
-2. 畫位功能還沒製作
+2. 畫位功能尚未完善
 
 3. 第三方金流還沒引進
 
-4. 影院資料庫尚未建立
+
