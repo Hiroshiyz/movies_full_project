@@ -11,16 +11,28 @@
   <div class="mb-3">
     <label for="date" class="form-label">選擇日期</label>
     <input
-      type="date"
+      type="datetime-local"
       class="form-control"
       id="date"
       name="booking_time"
-      min="{{today}}"
-      max="{{last_day}}"
+   
+      required
     />
     <!--  name 傳給後端用 -->
   </div>
-  <div>畫位(尚未畫位)之後再做</div>
+  <h3>選擇座位：</h3>
+  {% for seat in seats %}
+    {% if loop.index0 % 4 == 0 %}<br>{% endif %}
+    <label>
+      {% if seat.is_taken %}
+        <span style="color: red;">{{ seat.seat_number }}（已訂）</span>
+      {% else %}
+        <input type="radio" name="seat_id" value="{{ seat.id }}" required>
+        {{ seat.seat_number }}
+      {% endif %}
+    </label>
+  {% endfor %}
+  </div>
   <button type="submit" class="btn btn-primary">送出</button>
 </form>
 {%endblock%}

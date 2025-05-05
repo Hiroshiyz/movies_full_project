@@ -1,4 +1,5 @@
 from sqlalchemy import create_engine
+from sqlalchemy.sql import text
 from sqlalchemy.orm import scoped_session, sessionmaker, declarative_base
 dbPath = "database.db"
 # 創建database
@@ -14,5 +15,15 @@ Base.query = db_session.query_property()
 
 def init_db():
     import app.models
+    print("Creating tables")
     Base.metadata.create_all(bind=engine)
     # 利用 metadata.create_all 方法在資料庫中創建所有資料表（如果尚未創建）。
+    result = db_session.execute(
+        text("SELECT name FROM sqlite_master WHERE type='table';")
+    )
+    tables = result.fetchall()
+    print(f"Available tables: {tables}")
+
+
+if __name__ == "__main__":
+    init_db()

@@ -5,8 +5,9 @@ from app.routes import get_routes
 from flask_login import LoginManager
 from app.models import User
 from app.db import db_session
+from app.seed_seat import create_seat, seed_movies
 login_manager = LoginManager()
-login_manager.login_view = 'auth.login'  # 沒有登入會跳轉的end point
+login_manager.login_view = 'auth.login'
 
 
 def create_app():
@@ -15,7 +16,8 @@ def create_app():
     # 抓取secretKEY,API
     init_db()
     # database
-
+    seed_movies()
+    create_seat()
     get_routes(app)
     # route
 

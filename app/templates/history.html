@@ -5,6 +5,7 @@
       <th scope="col">#</th>
       <th scope="col">電影</th>
       <th scope="col">金額</th>
+      <th scope="col">座位</th>
       <th scope="col">時間</th>
     </tr>
   </thead>
@@ -14,7 +15,16 @@
       <th scope="row">{{booking.movie[ 'id']}}</th>
       <td>{{booking.movie['title']}}</td>
       <td>300$TWD</td>
+      <td>{{booking.seats['seat_number']}}</td>
       <td>{{booking['booking_time']}}</td>
+      <td>
+        <form
+          action="{{url_for('booking.delete', id = booking['id'])}}"
+          method="post"
+        >
+          <button type="submit" class="btn-close"></button>
+        </form>
+      </td>
     </tr>
     {%endfor%}
   </tbody>
